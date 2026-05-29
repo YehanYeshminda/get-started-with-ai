@@ -1,0 +1,14 @@
+slug: writing-plans
+name: Writing Plans
+type: skill
+description: >
+  Creates detailed implementation plans from specs before touching code. Breaks work
+  into bite-sized, testable tasks with clear file boundaries.
+npxCommand: npx skills add https://github.com/obra/superpowers --skill writing-plans
+skillsShUrl: https://www.skills.sh/obra/superpowers/writing-plans
+githubUrl: https://github.com/obra/superpowers
+agents: [cursor, claude-code, windsurf, cline, codex, copilot]
+useCases: [general, fullstack]
+tags: [planning, implementation, workflow]
+related: [brainstorming]
+featured: false

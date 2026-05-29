@@ -1,0 +1,9 @@
+slug: cline
+name: Cline
+icon: code-2
+docsUrl: https://docs.cline.bot
+configPaths:
+  skills: .cline/skills
+  rules: .clinerules
+  hooks: .cline/hooks.json
+  mcp: .cline/mcp.json

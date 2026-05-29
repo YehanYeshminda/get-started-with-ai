@@ -1,0 +1,14 @@
+slug: web-design-guidelines
+name: Web Design Guidelines
+type: skill
+description: >
+  Vercel's Web Interface Guidelines covering spacing, typography, interaction,
+  and accessibility for professional web interfaces.
+npxCommand: npx skills add https://github.com/vercel-labs/agent-skills --skill web-design-guidelines
+skillsShUrl: https://www.skills.sh/vercel-labs/agent-skills/web-design-guidelines
+githubUrl: https://github.com/vercel-labs/agent-skills
+agents: [cursor, claude-code, windsurf, cline, codex, copilot]
+useCases: [frontend, design, ui-ux]
+tags: [design, accessibility, vercel, guidelines]
+related: [ui-ux-pro-max]
+featured: true

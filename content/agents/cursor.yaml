@@ -1,0 +1,9 @@
+slug: cursor
+name: Cursor
+icon: mouse-pointer-2
+docsUrl: https://cursor.com/docs
+configPaths:
+  skills: .agents/skills
+  rules: .cursor/rules
+  hooks: .cursor/hooks.json
+  mcp: .cursor/mcp.json

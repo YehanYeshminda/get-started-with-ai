@@ -1,0 +1,30 @@
+slug: essential-cursor-setup
+name: Essential Cursor Setup
+description: >
+  Minimum viable agent configuration for Cursor — brainstorming and writing-plans
+  for design-first work, UI/UX Pro Max for visual quality, and a base rule for
+  consistent behavior.
+useCases: [general, cursor]
+agents: [cursor]
+featured: true
+resources:
+  - slug: brainstorming
+    step: 1
+    note: Install first — required before creative work
+  - slug: writing-plans
+    step: 2
+    note: Use after brainstorming to create implementation plans
+  - slug: ui-ux-pro-max
+    step: 3
+  - slug: base-cursor-rule
+    step: 4
+    note: Copy into .cursor/rules/
+steps:
+  - title: Install brainstorming skill
+    resourceSlug: brainstorming
+  - title: Install writing-plans skill
+    resourceSlug: writing-plans
+  - title: Install UI/UX Pro Max skill
+    resourceSlug: ui-ux-pro-max
+  - title: Add base Cursor rule
+    resourceSlug: base-cursor-rule

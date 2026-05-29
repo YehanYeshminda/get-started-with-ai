@@ -1,0 +1,14 @@
+slug: shadcn
+name: shadcn/ui
+type: skill
+description: >
+  shadcn/ui expert guidance for component installation, composition patterns,
+  theming, and Tailwind CSS integration.
+npxCommand: npx skills add https://github.com/vercel-labs/agent-skills --skill shadcn
+skillsShUrl: https://www.skills.sh/vercel-labs/agent-skills/shadcn
+githubUrl: https://github.com/vercel-labs/agent-skills
+agents: [cursor, claude-code, windsurf, cline, codex, copilot]
+useCases: [nextjs, frontend, design]
+tags: [shadcn, components, tailwind, ui]
+related: [nextjs, ui-ux-pro-max]
+featured: false

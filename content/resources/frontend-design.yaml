@@ -1,0 +1,14 @@
+slug: frontend-design
+name: Frontend Design
+type: skill
+description: >
+  Comprehensive frontend design patterns and visual polish guidance for building
+  distinctive, production-grade interfaces.
+npxCommand: npx skills add https://github.com/anthropics/skills --skill frontend-design
+skillsShUrl: https://www.skills.sh/anthropics/skills/frontend-design
+githubUrl: https://github.com/anthropics/skills
+agents: [cursor, claude-code, windsurf, cline, codex, copilot]
+useCases: [frontend, design]
+tags: [design, frontend, ui, polish]
+related: [ui-ux-pro-max, web-design-guidelines]
+featured: true

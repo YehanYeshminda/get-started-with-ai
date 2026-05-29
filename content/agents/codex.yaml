@@ -1,0 +1,9 @@
+slug: codex
+name: Codex
+icon: terminal
+docsUrl: https://developers.openai.com/codex
+configPaths:
+  skills: .agents/skills
+  rules: AGENTS.md
+  hooks: .codex/config.toml
+  mcp: .codex/config.toml

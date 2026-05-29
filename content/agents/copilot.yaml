@@ -1,0 +1,9 @@
+slug: copilot
+name: GitHub Copilot
+icon: github
+docsUrl: https://docs.github.com/en/copilot
+configPaths:
+  skills: .github/skills
+  rules: .github/copilot-instructions.md
+  hooks: .github/copilot/config.json
+  mcp: .github/copilot/mcp.json

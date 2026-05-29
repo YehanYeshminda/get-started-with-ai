@@ -1,0 +1,18 @@
+slug: sample-hooks-config
+name: Sample Hooks Config
+type: hook
+description: >
+  Example Cursor hooks.json for running scripts on agent events like before shell
+  commands or after file edits.
+agents: [cursor]
+useCases: [cursor, general]
+tags: [hooks, automation, cursor]
+featured: false
+snippet: |
+  {
+    "version": 1,
+    "hooks": {
+      "beforeShellExecution": [],
+      "afterFileEdit": []
+    }
+  }

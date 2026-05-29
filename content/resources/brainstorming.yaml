@@ -1,0 +1,14 @@
+slug: brainstorming
+name: Brainstorming
+type: skill
+description: >
+  Explores user intent, requirements, and design before implementation. Required
+  before any creative work — features, components, or behavior changes.
+npxCommand: npx skills add https://github.com/obra/superpowers --skill brainstorming
+skillsShUrl: https://www.skills.sh/obra/superpowers/brainstorming
+githubUrl: https://github.com/obra/superpowers
+agents: [cursor, claude-code, windsurf, cline, codex, copilot]
+useCases: [general, frontend, fullstack]
+tags: [planning, design, spec, workflow]
+related: [writing-plans]
+featured: true

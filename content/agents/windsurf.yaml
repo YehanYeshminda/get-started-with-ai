@@ -1,0 +1,9 @@
+slug: windsurf
+name: Windsurf
+icon: wind
+docsUrl: https://docs.windsurf.com
+configPaths:
+  skills: .windsurf/skills
+  rules: .windsurf/rules
+  hooks: .windsurf/hooks.json
+  mcp: .windsurf/mcp.json

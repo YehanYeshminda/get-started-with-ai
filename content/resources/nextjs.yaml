@@ -1,0 +1,14 @@
+slug: nextjs
+name: Next.js
+type: skill
+description: >
+  Next.js App Router expert guidance for routing, Server Components, caching,
+  data fetching, and Vercel deployment.
+npxCommand: npx skills add https://github.com/vercel-labs/agent-skills --skill nextjs
+skillsShUrl: https://www.skills.sh/vercel-labs/agent-skills/nextjs
+githubUrl: https://github.com/vercel-labs/agent-skills
+agents: [cursor, claude-code, windsurf, cline, codex, copilot]
+useCases: [nextjs, fullstack, frontend]
+tags: [nextjs, react, vercel, app-router]
+related: [shadcn, web-design-guidelines]
+featured: false

@@ -1,0 +1,20 @@
+slug: sample-mcp-config
+name: Sample MCP Config
+type: mcp
+description: >
+  Starter MCP server configuration block for Cursor. Add your own server tokens
+  and enable the tools your workflow needs.
+agents: [cursor, claude-code, windsurf, cline]
+useCases: [general]
+tags: [mcp, configuration, tools]
+featured: false
+snippet: |
+  {
+    "mcpServers": {
+      "example-server": {
+        "command": "npx",
+        "args": ["-y", "@modelcontextprotocol/server-example"],
+        "env": {}
+      }
+    }
+  }

@@ -1,0 +1,34 @@
+slug: nextjs-fullstack-agent
+name: Next.js Full-Stack Agent
+description: >
+  A complete agent stack for Next.js development — planning skills, framework
+  expertise, UI components, and design guidelines.
+useCases: [nextjs, fullstack, frontend]
+agents: [cursor, claude-code, windsurf, cline, codex, copilot]
+featured: true
+resources:
+  - slug: brainstorming
+    step: 1
+  - slug: writing-plans
+    step: 2
+  - slug: nextjs
+    step: 3
+  - slug: shadcn
+    step: 4
+  - slug: ui-ux-pro-max
+    step: 5
+  - slug: web-design-guidelines
+    step: 6
+steps:
+  - title: Install brainstorming skill
+    resourceSlug: brainstorming
+  - title: Install writing-plans skill
+    resourceSlug: writing-plans
+  - title: Install Next.js skill
+    resourceSlug: nextjs
+  - title: Install shadcn/ui skill
+    resourceSlug: shadcn
+  - title: Install UI/UX Pro Max skill
+    resourceSlug: ui-ux-pro-max
+  - title: Install Web Design Guidelines skill
+    resourceSlug: web-design-guidelines

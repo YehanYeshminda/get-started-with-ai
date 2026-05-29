@@ -1,0 +1,22 @@
+slug: base-cursor-rule
+name: Base Cursor Rule
+type: rule
+description: >
+  A starter Cursor rule for consistent agent behavior — focused diffs, match existing
+  conventions, and no drive-by refactors.
+agents: [cursor]
+useCases: [general, cursor]
+tags: [rules, cursor, conventions]
+related: [brainstorming]
+featured: false
+snippet: |
+  ---
+  description: Base coding agent behavior
+  alwaysApply: true
+  ---
+
+  - Minimize scope — use the simplest correct diff
+  - Match existing code conventions before adding new patterns
+  - Do not refactor unrelated code
+  - Prefer editing existing files over creating new ones
+  - Run commands and verify changes rather than assuming they work

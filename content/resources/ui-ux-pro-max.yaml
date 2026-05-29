@@ -1,0 +1,14 @@
+slug: ui-ux-pro-max
+name: UI/UX Pro Max
+type: skill
+description: >
+  Comprehensive design guide for web and mobile applications. Contains 50+ styles,
+  color palettes, font pairings, UX guidelines, and stack-specific recommendations.
+npxCommand: npx skills add https://github.com/nextlevelbuilder/ui-ux-pro-max-skill --skill ui-ux-pro-max
+skillsShUrl: https://www.skills.sh/nextlevelbuilder/ui-ux-pro-max-skill/ui-ux-pro-max
+githubUrl: https://github.com/nextlevelbuilder/ui-ux-pro-max-skill
+agents: [cursor, claude-code, windsurf, cline, codex, copilot]
+useCases: [frontend, design, ui-ux]
+tags: [design, ui, ux, styling, accessibility]
+related: [web-design-guidelines, frontend-design]
+featured: true
