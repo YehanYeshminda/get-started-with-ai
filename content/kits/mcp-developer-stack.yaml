@@ -1,0 +1,29 @@
+slug: mcp-developer-stack
+name: MCP Developer Stack
+description: >
+  Common MCP servers for day-to-day development — GitHub for repo context,
+  filesystem for local files, and Playwright for browser verification.
+useCases: [general, fullstack, frontend, cursor]
+agents: [cursor, claude-code, windsurf, cline]
+featured: true
+resources:
+  - slug: mcp-github
+    step: 1
+    note: Replace YOUR_GITHUB_TOKEN with a PAT that has repo scope
+  - slug: mcp-filesystem
+    step: 2
+    note: Set the path to your project root
+  - slug: mcp-playwright
+    step: 3
+  - slug: mcp-fetch
+    step: 4
+    note: Optional — lightweight HTTP reads without a browser
+steps:
+  - title: Add GitHub MCP
+    resourceSlug: mcp-github
+  - title: Add Filesystem MCP
+    resourceSlug: mcp-filesystem
+  - title: Add Playwright MCP
+    resourceSlug: mcp-playwright
+  - title: Add Fetch MCP (optional)
+    resourceSlug: mcp-fetch

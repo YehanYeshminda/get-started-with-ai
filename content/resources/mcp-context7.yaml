@@ -1,0 +1,20 @@
+slug: mcp-context7
+name: Context7 MCP
+type: mcp
+description: >
+  Pull up-to-date library and framework documentation into your agent's context.
+  Good for Next.js, React, and other fast-moving stacks where docs change often.
+agents: [cursor, claude-code, windsurf, cline, codex]
+useCases: [fullstack, nextjs, frontend]
+tags: [mcp, docs, context7, libraries]
+related: [mcp-brave-search, nextjs]
+featured: false
+snippet: |
+  {
+    "mcpServers": {
+      "context7": {
+        "command": "npx",
+        "args": ["-y", "@upstash/context7-mcp@latest"]
+      }
+    }
+  }

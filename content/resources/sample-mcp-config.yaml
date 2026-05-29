@@ -1,20 +1,23 @@
 slug: sample-mcp-config
-name: Sample MCP Config
+name: MCP Config Template
 type: mcp
 description: >
-  Starter MCP server configuration block for Cursor. Add your own server tokens
-  and enable the tools your workflow needs.
+  Blank template for .cursor/mcp.json. Merge multiple MCP blocks from this catalog
+  into one mcpServers object — don't paste separate JSON files on top of each other.
 agents: [cursor, claude-code, windsurf, cline]
-useCases: [general]
-tags: [mcp, configuration, tools]
+useCases: [general, cursor]
+tags: [mcp, configuration, template]
+related: [mcp-github, mcp-filesystem, mcp-playwright]
 featured: false
 snippet: |
   {
     "mcpServers": {
-      "example-server": {
+      "server-name": {
         "command": "npx",
-        "args": ["-y", "@modelcontextprotocol/server-example"],
-        "env": {}
+        "args": ["-y", "package-name"],
+        "env": {
+          "API_KEY": "your-key-here"
+        }
       }
     }
   }

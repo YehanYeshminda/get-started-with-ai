@@ -1,0 +1,23 @@
+slug: mcp-supabase
+name: Supabase MCP
+type: mcp
+description: >
+  Manage Supabase projects from your agent — run SQL, inspect tables, check logs,
+  and apply migrations. Requires a Supabase personal access token.
+agents: [cursor, claude-code, windsurf, cline]
+useCases: [fullstack, nextjs]
+tags: [mcp, supabase, database, postgres]
+related: [nextjs]
+featured: false
+snippet: |
+  {
+    "mcpServers": {
+      "supabase": {
+        "command": "npx",
+        "args": ["-y", "@supabase/mcp-server-supabase@latest"],
+        "env": {
+          "SUPABASE_ACCESS_TOKEN": "YOUR_SUPABASE_ACCESS_TOKEN"
+        }
+      }
+    }
+  }

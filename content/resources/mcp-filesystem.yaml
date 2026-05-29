@@ -1,0 +1,24 @@
+slug: mcp-filesystem
+name: Filesystem MCP
+type: mcp
+description: >
+  Official MCP server for controlled local file access. Set allowed directories
+  in the args — only paths listed here can be read or written by the agent.
+agents: [cursor, claude-code, windsurf, cline, codex]
+useCases: [general, fullstack, frontend]
+tags: [mcp, filesystem, local, files]
+related: [mcp-github]
+featured: true
+snippet: |
+  {
+    "mcpServers": {
+      "filesystem": {
+        "command": "npx",
+        "args": [
+          "-y",
+          "@modelcontextprotocol/server-filesystem",
+          "/absolute/path/to/your/project"
+        ]
+      }
+    }
+  }

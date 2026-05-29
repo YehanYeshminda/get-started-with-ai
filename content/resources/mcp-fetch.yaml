@@ -1,0 +1,20 @@
+slug: mcp-fetch
+name: Fetch MCP
+type: mcp
+description: >
+  Simple HTTP fetch tool for your agent — read API responses and web pages as text.
+  No API key required. A lightweight alternative when you don't need full browser automation.
+agents: [cursor, claude-code, windsurf, cline, codex]
+useCases: [general, fullstack]
+tags: [mcp, http, fetch, api]
+related: [mcp-playwright]
+featured: false
+snippet: |
+  {
+    "mcpServers": {
+      "fetch": {
+        "command": "npx",
+        "args": ["-y", "@modelcontextprotocol/server-fetch"]
+      }
+    }
+  }

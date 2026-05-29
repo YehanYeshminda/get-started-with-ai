@@ -1,0 +1,23 @@
+slug: mcp-brave-search
+name: Brave Search MCP
+type: mcp
+description: >
+  Web search for your agent via the Brave Search API. Handy when the model needs
+  up-to-date docs, error messages, or library references not in its training data.
+agents: [cursor, claude-code, windsurf, cline, codex, copilot]
+useCases: [general, fullstack, frontend]
+tags: [mcp, search, web, brave]
+related: [mcp-context7]
+featured: false
+snippet: |
+  {
+    "mcpServers": {
+      "brave-search": {
+        "command": "npx",
+        "args": ["-y", "@modelcontextprotocol/server-brave-search"],
+        "env": {
+          "BRAVE_API_KEY": "YOUR_BRAVE_API_KEY"
+        }
+      }
+    }
+  }

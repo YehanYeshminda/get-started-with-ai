@@ -1,0 +1,20 @@
+slug: mcp-playwright
+name: Playwright MCP
+type: mcp
+description: >
+  Browser automation for your agent — navigate pages, take snapshots, click, and
+  fill forms. Useful for verifying UI changes and debugging web apps.
+agents: [cursor, claude-code, windsurf, cline]
+useCases: [frontend, fullstack, nextjs]
+tags: [mcp, browser, testing, playwright, automation]
+related: [mcp-filesystem]
+featured: true
+snippet: |
+  {
+    "mcpServers": {
+      "playwright": {
+        "command": "npx",
+        "args": ["-y", "@playwright/mcp@latest"]
+      }
+    }
+  }

@@ -1,0 +1,23 @@
+slug: mcp-github
+name: GitHub MCP
+type: mcp
+description: >
+  Lets your agent read issues, PRs, and repo metadata from GitHub. Add a personal
+  access token with repo scope to .cursor/mcp.json (or your agent's MCP config).
+agents: [cursor, claude-code, windsurf, cline, copilot]
+useCases: [general, fullstack]
+tags: [mcp, github, git, prs, issues]
+related: [mcp-filesystem]
+featured: true
+snippet: |
+  {
+    "mcpServers": {
+      "github": {
+        "command": "npx",
+        "args": ["-y", "@modelcontextprotocol/server-github"],
+        "env": {
+          "GITHUB_PERSONAL_ACCESS_TOKEN": "YOUR_GITHUB_TOKEN"
+        }
+      }
+    }
+  }
