@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { MetaLine } from "@/components/AgentBadge";
+import { ArrowLeft, ExternalLink, Github } from "lucide-react";
+import { TagList, TypeBadge } from "@/components/AgentBadge";
 import { CopyBlock } from "@/components/CopyBlock";
 import { ResourceCard } from "@/components/ResourceCard";
 import {
@@ -11,6 +12,7 @@ import {
 } from "@/lib/content";
 import { getCopyTextForResource } from "@/lib/search";
 import { formatLabel } from "@/lib/utils";
+import type { Agent, ResourceType } from "@/lib/types";
 
 type ResourcePageProps = {
   params: Promise<{ slug: string }>;
@@ -19,6 +21,14 @@ type ResourcePageProps = {
 export function generateStaticParams() {
   return getAllResourceSlugs().map((slug) => ({ slug }));
 }
+
+const configPathKey: Record<ResourceType, keyof Agent["configPaths"]> = {
+  skill: "skills",
+  rule: "rules",
+  mcp: "mcp",
+  hook: "hooks",
+  setting: "mcp",
+};
 
 export default async function ResourcePage({ params }: ResourcePageProps) {
   const { slug } = await params;
@@ -34,28 +44,31 @@ export default async function ResourcePage({ params }: ResourcePageProps) {
     resource.related.includes(item.slug),
   );
   const copyText = getCopyTextForResource(resource);
-  const supportedAgents = resource.agents.map(
-    (agentSlug) => agentMap.get(agentSlug)?.name ?? formatLabel(agentSlug),
-  );
+  const pathKey = configPathKey[resource.type];
+  const supportedAgents = resource.agents
+    .map((agentSlug) => agentMap.get(agentSlug))
+    .filter((agent): agent is Agent => Boolean(agent));
 
   return (
-    <div className="mx-auto max-w-2xl px-4 py-10 sm:px-6">
+    <div className="mx-auto max-w-3xl px-4 py-12 sm:px-6">
       <Link
         href="/browse"
-        className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+        className="inline-flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
       >
-        ← Browse
+        <ArrowLeft className="h-4 w-4" aria-hidden="true" />
+        Browse
       </Link>
 
-      <MetaLine
-        items={[resource.type, ...supportedAgents]}
-        className="mt-8"
-      />
-
-      <h1 className="mt-2 text-2xl font-medium">{resource.name}</h1>
-      <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
-        {resource.description}
-      </p>
+      <header className="mt-8">
+        <TypeBadge type={resource.type} />
+        <h1 className="mt-2.5 text-2xl font-semibold tracking-tight">
+          {resource.name}
+        </h1>
+        <p className="mt-4 text-base leading-relaxed text-muted-foreground">
+          {resource.description}
+        </p>
+        <TagList tags={resource.tags} className="mt-5" max={12} />
+      </header>
 
       {copyText ? (
         <div className="mt-8">
@@ -67,18 +80,30 @@ export default async function ResourcePage({ params }: ResourcePageProps) {
         </div>
       ) : null}
 
-      {resource.githubUrl ? (
-        <p className="mt-4 text-sm">
+      <div className="mt-5 flex flex-wrap gap-3">
+        {resource.githubUrl ? (
           <a
             href={resource.githubUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-muted-foreground underline-offset-4 hover:text-foreground hover:underline"
+            className="inline-flex items-center gap-1.5 rounded-md border border-border px-3 py-1.5 text-sm text-muted-foreground transition-colors hover:border-border-strong hover:text-foreground"
           >
+            <Github className="h-4 w-4" aria-hidden="true" />
             GitHub repo
           </a>
-        </p>
-      ) : null}
+        ) : null}
+        {resource.skillsShUrl ? (
+          <a
+            href={resource.skillsShUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 rounded-md border border-border px-3 py-1.5 text-sm text-muted-foreground transition-colors hover:border-border-strong hover:text-foreground"
+          >
+            <ExternalLink className="h-4 w-4" aria-hidden="true" />
+            skills.sh
+          </a>
+        ) : null}
+      </div>
 
       {resource.snippet && resource.npxCommand ? (
         <div className="mt-8">
@@ -86,16 +111,59 @@ export default async function ResourcePage({ params }: ResourcePageProps) {
         </div>
       ) : null}
 
+      {/* Where it installs */}
+      <section className="mt-12 rounded-xl border border-border bg-surface p-5">
+        <h2 className="text-sm font-medium">Where it installs</h2>
+        <p className="mt-1 text-xs text-muted-foreground">
+          Default config location for each supported agent.
+        </p>
+        <ul className="mt-4 divide-y divide-border">
+          {supportedAgents.map((agent) => (
+            <li
+              key={agent.slug}
+              className="flex items-center justify-between gap-3 py-2.5 text-sm"
+            >
+              <a
+                href={agent.docsUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-foreground transition-colors hover:text-muted-foreground"
+              >
+                {agent.name}
+              </a>
+              <code className="truncate font-mono text-xs text-muted-foreground">
+                {agent.configPaths[pathKey]}
+              </code>
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      {resource.useCases.length > 0 ? (
+        <section className="mt-8">
+          <h2 className="text-sm font-medium">Best for</h2>
+          <div className="mt-3 flex flex-wrap gap-2">
+            {resource.useCases.map((useCase) => (
+              <span
+                key={useCase}
+                className="inline-flex items-center rounded-md border border-border bg-surface px-2.5 py-1 text-xs text-muted-foreground"
+              >
+                {formatLabel(useCase)}
+              </span>
+            ))}
+          </div>
+        </section>
+      ) : null}
+
       {relatedResources.length > 0 ? (
         <section className="mt-14 border-t border-border pt-10">
-          <h2 className="text-sm font-medium">Related</h2>
-          <div className="mt-4 divide-y divide-border">
+          <h2 className="text-sm font-medium">Related resources</h2>
+          <div className="mt-4 grid gap-4 sm:grid-cols-2">
             {relatedResources.map((related) => (
               <ResourceCard
                 key={related.slug}
                 resource={related}
                 agents={agents}
-                compact
               />
             ))}
           </div>

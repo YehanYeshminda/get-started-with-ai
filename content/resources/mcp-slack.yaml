@@ -1,0 +1,24 @@
+slug: mcp-slack
+name: Slack MCP
+type: mcp
+description: >
+  Lets your agent read channels and post messages in Slack — useful for triaging
+  threads or sending build and deploy notifications. Needs a bot token.
+agents: [cursor, claude-code, windsurf, cline, copilot]
+useCases: [general, devops]
+tags: [mcp, slack, notifications, chat]
+related: [mcp-linear]
+featured: false
+snippet: |
+  {
+    "mcpServers": {
+      "slack": {
+        "command": "npx",
+        "args": ["-y", "@modelcontextprotocol/server-slack"],
+        "env": {
+          "SLACK_BOT_TOKEN": "xoxb-YOUR-TOKEN",
+          "SLACK_TEAM_ID": "T01234567"
+        }
+      }
+    }
+  }

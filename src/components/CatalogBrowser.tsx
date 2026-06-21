@@ -80,7 +80,7 @@ export function CatalogBrowser({
           </button>
         </div>
       );
-    } else {
+    } else if (compactCards) {
       resultsContent = (
         <div className="space-y-10">
           {kits.length > 0 ? (
@@ -103,7 +103,37 @@ export function CatalogBrowser({
                     key={resource.slug}
                     resource={resource}
                     agents={agents}
-                    compact={compactCards}
+                    compact
+                  />
+                ))}
+              </div>
+            </section>
+          ) : null}
+        </div>
+      );
+    } else {
+      resultsContent = (
+        <div className="space-y-12">
+          {kits.length > 0 ? (
+            <section>
+              <SectionHeader title="Starter kits" count={kits.length} />
+              <div className="grid gap-4 sm:grid-cols-2">
+                {kits.map((kit) => (
+                  <KitCard key={kit.slug} kit={kit} agents={agents} />
+                ))}
+              </div>
+            </section>
+          ) : null}
+
+          {resources.length > 0 ? (
+            <section>
+              <SectionHeader title="Resources" count={resources.length} />
+              <div className="grid gap-4 sm:grid-cols-2">
+                {resources.map((resource) => (
+                  <ResourceCard
+                    key={resource.slug}
+                    resource={resource}
+                    agents={agents}
                   />
                 ))}
               </div>

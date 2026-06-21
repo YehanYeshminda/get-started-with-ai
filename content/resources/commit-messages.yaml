@@ -1,0 +1,14 @@
+slug: commit-messages
+name: Conventional Commits
+type: skill
+description: >
+  Writes clear, conventional commit messages that explain the why, not just the
+  what. Groups related changes and keeps history reviewable.
+npxCommand: npx skills add https://github.com/obra/superpowers --skill commit-messages
+skillsShUrl: https://www.skills.sh/obra/superpowers/commit-messages
+githubUrl: https://github.com/obra/superpowers
+agents: [cursor, claude-code, windsurf, cline, codex, copilot]
+useCases: [general, devops]
+tags: [git, commits, workflow, conventions]
+related: [code-review]
+featured: false

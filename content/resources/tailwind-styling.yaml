@@ -1,0 +1,14 @@
+slug: tailwind-styling
+name: Tailwind Styling
+type: skill
+description: >
+  Writes clean, responsive Tailwind with a consistent design-token scale. Avoids
+  arbitrary values, extracts repeated patterns, and keeps class lists readable.
+npxCommand: npx skills add https://github.com/obra/superpowers --skill tailwind
+skillsShUrl: https://www.skills.sh/obra/superpowers/tailwind
+githubUrl: https://github.com/obra/superpowers
+agents: [cursor, claude-code, windsurf, cline, codex, copilot]
+useCases: [frontend, ui-ux, design, nextjs]
+tags: [tailwind, css, styling, frontend]
+related: [shadcn, frontend-design]
+featured: false

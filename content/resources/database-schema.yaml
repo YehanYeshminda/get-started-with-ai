@@ -1,0 +1,14 @@
+slug: database-schema
+name: Database Schema Design
+type: skill
+description: >
+  Models relational schemas with sane normalization, indexes, and constraints.
+  Plans safe, reversible migrations and flags N+1 query risks early.
+npxCommand: npx skills add https://github.com/obra/superpowers --skill database-schema
+skillsShUrl: https://www.skills.sh/obra/superpowers/database-schema
+githubUrl: https://github.com/obra/superpowers
+agents: [cursor, claude-code, windsurf, cline, codex, copilot]
+useCases: [backend, database, fullstack]
+tags: [database, sql, schema, migrations]
+related: [api-design, mcp-postgres]
+featured: false

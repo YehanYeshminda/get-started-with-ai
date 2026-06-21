@@ -1,0 +1,14 @@
+slug: api-design
+name: API Design
+type: skill
+description: >
+  Designs consistent REST and RPC APIs — resource naming, status codes,
+  pagination, versioning, and error shapes. Produces an OpenAPI-friendly contract.
+npxCommand: npx skills add https://github.com/obra/superpowers --skill api-design
+skillsShUrl: https://www.skills.sh/obra/superpowers/api-design
+githubUrl: https://github.com/obra/superpowers
+agents: [cursor, claude-code, windsurf, cline, codex, copilot]
+useCases: [backend, api, fullstack]
+tags: [api, rest, design, backend]
+related: [database-schema, documentation]
+featured: true

@@ -1,0 +1,14 @@
+slug: debugging
+name: Systematic Debugging
+type: skill
+description: >
+  Roots out bugs with a hypothesis-driven loop — reproduce, isolate, instrument,
+  and verify the fix. Stops the agent from guessing and patching symptoms.
+npxCommand: npx skills add https://github.com/obra/superpowers --skill debugging
+skillsShUrl: https://www.skills.sh/obra/superpowers/debugging
+githubUrl: https://github.com/obra/superpowers
+agents: [cursor, claude-code, windsurf, cline, codex, copilot]
+useCases: [general, backend, fullstack]
+tags: [debugging, workflow, troubleshooting]
+related: [test-driven-development, refactoring]
+featured: false

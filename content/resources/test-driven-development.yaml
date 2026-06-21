@@ -1,0 +1,14 @@
+slug: test-driven-development
+name: Test-Driven Development
+type: skill
+description: >
+  Drives implementation from failing tests first. Writes the test, watches it
+  fail, makes it pass, then refactors — keeping coverage honest as you build.
+npxCommand: npx skills add https://github.com/obra/superpowers --skill tdd
+skillsShUrl: https://www.skills.sh/obra/superpowers/tdd
+githubUrl: https://github.com/obra/superpowers
+agents: [cursor, claude-code, windsurf, cline, codex, copilot]
+useCases: [general, testing, backend, fullstack]
+tags: [testing, tdd, quality, workflow]
+related: [code-review, debugging]
+featured: true

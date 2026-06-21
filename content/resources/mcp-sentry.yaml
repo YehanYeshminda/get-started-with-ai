@@ -1,0 +1,23 @@
+slug: mcp-sentry
+name: Sentry MCP
+type: mcp
+description: >
+  Pulls error reports and stack traces from Sentry into your agent so it can
+  triage and fix production issues with full context. Needs an auth token.
+agents: [cursor, claude-code, windsurf, cline, copilot]
+useCases: [backend, devops, fullstack]
+tags: [mcp, sentry, errors, monitoring]
+related: [debugging, mcp-postgres]
+featured: false
+snippet: |
+  {
+    "mcpServers": {
+      "sentry": {
+        "command": "npx",
+        "args": ["-y", "@sentry/mcp-server"],
+        "env": {
+          "SENTRY_AUTH_TOKEN": "YOUR_SENTRY_TOKEN"
+        }
+      }
+    }
+  }

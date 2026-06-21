@@ -2,11 +2,11 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { Check, Copy } from "lucide-react";
-import { KitBadge, MetaLine } from "@/components/AgentBadge";
+import { ArrowRight, Check, Copy, Layers } from "lucide-react";
+import { KitBadge, TagList, TypeBadge } from "@/components/AgentBadge";
 import type { Agent, Kit, Resource } from "@/lib/types";
 import { getCopyTextForResource } from "@/lib/search";
-import { formatLabel } from "@/lib/utils";
+import { cn, formatLabel } from "@/lib/utils";
 
 type ResourceCardProps = {
   resource: Resource;
@@ -34,7 +34,12 @@ function CompactCopyButton({ text }: { text: string }) {
     <button
       type="button"
       onClick={handleCopy}
-      className="inline-flex cursor-pointer items-center gap-1.5 text-xs text-muted-foreground transition-colors hover:text-foreground"
+      className={cn(
+        "inline-flex shrink-0 cursor-pointer items-center gap-1.5 rounded-md border border-border bg-surface px-2.5 py-1.5 text-xs transition-colors",
+        copied
+          ? "text-[var(--color-mcp)]"
+          : "text-muted-foreground hover:border-border-strong hover:text-foreground",
+      )}
     >
       {copied ? (
         <>
@@ -44,7 +49,7 @@ function CompactCopyButton({ text }: { text: string }) {
       ) : (
         <>
           <Copy className="h-3.5 w-3.5" aria-hidden="true" />
-          Copy command
+          Copy
         </>
       )}
     </button>
@@ -62,63 +67,79 @@ export function ResourceCard({
     .slice(0, 3)
     .map((slug) => agentMap.get(slug)?.name ?? formatLabel(slug));
 
-  return (
-    <article className="group border-b border-border py-5 last:border-b-0">
-      <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+  if (compact) {
+    return (
+      <article className="group flex items-center gap-4 border-b border-border py-4 last:border-b-0">
         <div className="min-w-0 flex-1">
-          <MetaLine
-            items={[
-              typeLabelsSafe(resource.type),
-              ...agentNames,
-              ...(resource.agents.length > 3
-                ? [`+${resource.agents.length - 3}`]
-                : []),
-            ]}
-          />
-          <h3 className="mt-1 text-base font-medium text-foreground">
-            <Link
-              href={`/resource/${resource.slug}`}
-              className="cursor-pointer hover:underline"
-            >
-              {resource.name}
-            </Link>
-          </h3>
-          <p className="mt-2 max-w-2xl text-sm leading-relaxed text-muted-foreground">
-            {compact && resource.description.length > 160
-              ? `${resource.description.slice(0, 160).trim()}…`
-              : resource.description}
+          <div className="flex flex-wrap items-center gap-2">
+            <TypeBadge type={resource.type} />
+            <h3 className="truncate text-sm font-medium text-foreground">
+              <Link
+                href={`/resource/${resource.slug}`}
+                className="cursor-pointer hover:underline"
+              >
+                {resource.name}
+              </Link>
+            </h3>
+          </div>
+          <p className="mt-1.5 line-clamp-2 max-w-2xl text-sm leading-relaxed text-muted-foreground">
+            {resource.description}
           </p>
         </div>
+        {copyText && resource.npxCommand ? (
+          <CompactCopyButton text={resource.npxCommand} />
+        ) : (
+          <Link
+            href={`/resource/${resource.slug}`}
+            className="shrink-0 text-muted-foreground transition-colors group-hover:text-foreground"
+            aria-label={`Open ${resource.name}`}
+          >
+            <ArrowRight className="h-4 w-4" aria-hidden="true" />
+          </Link>
+        )}
+      </article>
+    );
+  }
 
-        <div className="flex shrink-0 items-center gap-4 text-sm">
-          {copyText && resource.npxCommand ? (
-            <CompactCopyButton text={resource.npxCommand} />
-          ) : null}
-          {resource.skillsShUrl ? (
-            <a
-              href={resource.skillsShUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="cursor-pointer text-muted-foreground transition-colors hover:text-foreground"
-            >
-              skills.sh
-            </a>
-          ) : null}
-        </div>
+  return (
+    <article className="group flex h-full flex-col rounded-lg border border-border bg-surface p-5 transition-colors hover:border-border-strong">
+      <TypeBadge type={resource.type} />
+
+      <h3 className="mt-2.5 text-base font-medium text-foreground">
+        <Link
+          href={`/resource/${resource.slug}`}
+          className="cursor-pointer hover:underline"
+        >
+          {resource.name}
+        </Link>
+      </h3>
+
+      <p className="mt-1.5 flex-1 text-sm leading-relaxed text-muted-foreground">
+        {resource.description.length > 150
+          ? `${resource.description.slice(0, 150).trim()}…`
+          : resource.description}
+      </p>
+
+      <TagList tags={resource.tags} className="mt-4" max={3} />
+
+      <div className="mt-3 flex items-center justify-between gap-3 border-t border-border pt-3">
+        <p className="truncate text-xs text-muted-foreground">
+          {agentNames.join(", ")}
+          {resource.agents.length > 3 ? ` +${resource.agents.length - 3}` : ""}
+        </p>
+        {copyText && resource.npxCommand ? (
+          <CompactCopyButton text={resource.npxCommand} />
+        ) : (
+          <Link
+            href={`/resource/${resource.slug}`}
+            className="text-xs text-muted-foreground transition-colors hover:text-foreground"
+          >
+            Details
+          </Link>
+        )}
       </div>
     </article>
   );
-}
-
-function typeLabelsSafe(type: Resource["type"]) {
-  const labels: Record<Resource["type"], string> = {
-    skill: "Skill",
-    rule: "Rule",
-    mcp: "MCP",
-    hook: "Hook",
-    setting: "Setting",
-  };
-  return labels[type];
 }
 
 type KitCardProps = {
@@ -135,50 +156,62 @@ export function KitCard({ kit, agents, list = false }: KitCardProps) {
 
   if (list) {
     return (
-      <article className="border-b border-border py-5 last:border-b-0">
-        <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
-          <div>
-            <MetaLine items={["Kit", ...agentNames, `${kit.steps.length} steps`]} />
-            <h3 className="mt-1 text-base font-medium">
+      <article className="group flex items-center gap-4 border-b border-border py-4 last:border-b-0">
+        <div className="min-w-0 flex-1">
+          <div className="flex flex-wrap items-center gap-2">
+            <KitBadge />
+            <h3 className="truncate text-sm font-medium">
               <Link href={`/kit/${kit.slug}`} className="hover:underline">
                 {kit.name}
               </Link>
             </h3>
-            <p className="mt-2 max-w-2xl text-sm leading-relaxed text-muted-foreground">
-              {kit.description}
-            </p>
+            <span className="text-xs text-muted-foreground">
+              {kit.steps.length} steps
+            </span>
           </div>
-          <Link
-            href={`/kit/${kit.slug}`}
-            className="shrink-0 text-sm text-muted-foreground transition-colors hover:text-foreground"
-          >
-            View kit
-          </Link>
+          <p className="mt-1.5 line-clamp-2 max-w-2xl text-sm leading-relaxed text-muted-foreground">
+            {kit.description}
+          </p>
         </div>
+        <Link
+          href={`/kit/${kit.slug}`}
+          className="shrink-0 text-muted-foreground transition-colors group-hover:text-foreground"
+          aria-label={`Open ${kit.name}`}
+        >
+          <ArrowRight className="h-4 w-4" aria-hidden="true" />
+        </Link>
       </article>
     );
   }
 
   return (
-    <article className="flex h-full flex-col rounded-lg border border-border bg-surface p-5">
-      <KitBadge />
-      <h3 className="mt-3 text-base font-medium">
+    <article className="group relative flex h-full flex-col rounded-lg border border-border bg-surface p-5 transition-colors hover:border-border-strong">
+      <div className="flex items-center justify-between">
+        <KitBadge />
+        <span className="inline-flex items-center gap-1.5 text-xs text-muted-foreground">
+          <Layers className="h-3.5 w-3.5" aria-hidden="true" />
+          {kit.resources.length} resources
+        </span>
+      </div>
+
+      <h3 className="mt-2.5 text-base font-medium">
         <Link href={`/kit/${kit.slug}`} className="hover:underline">
+          <span className="absolute inset-0" aria-hidden="true" />
           {kit.name}
         </Link>
       </h3>
-      <p className="mt-2 flex-1 text-sm leading-relaxed text-muted-foreground">
+      <p className="mt-1.5 flex-1 text-sm leading-relaxed text-muted-foreground">
         {kit.description}
       </p>
-      <p className="mt-4 text-xs text-muted-foreground">
-        {agentNames.join(", ")} · {kit.steps.length} steps
-      </p>
-      <Link
-        href={`/kit/${kit.slug}`}
-        className="mt-4 inline-block text-sm text-foreground underline-offset-4 hover:underline"
-      >
-        Open kit
-      </Link>
+
+      <div className="mt-4 flex items-center justify-between gap-3 border-t border-border pt-3">
+        <p className="truncate text-xs text-muted-foreground">
+          {agentNames.join(", ")} · {kit.steps.length} steps
+        </p>
+        <span className="text-xs text-muted-foreground transition-colors group-hover:text-foreground">
+          Open →
+        </span>
+      </div>
     </article>
   );
 }

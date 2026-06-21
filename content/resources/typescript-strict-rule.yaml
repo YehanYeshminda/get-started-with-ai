@@ -1,0 +1,22 @@
+slug: typescript-strict-rule
+name: TypeScript Strict Rule
+type: rule
+description: >
+  Keeps the agent honest about types — no `any`, no non-null assertions to
+  silence errors, and explicit return types on exported functions.
+agents: [cursor, claude-code, windsurf, cline, codex, copilot]
+useCases: [general, frontend, fullstack, backend]
+tags: [rules, typescript, types, conventions]
+related: [base-cursor-rule, react-best-practices-rule]
+featured: false
+snippet: |
+  ---
+  description: TypeScript strictness conventions
+  alwaysApply: true
+  ---
+
+  - Never use `any` — prefer `unknown` and narrow it
+  - Do not use `!` non-null assertions to silence the type checker
+  - Add explicit return types to exported functions
+  - Model invalid states out of existence with discriminated unions
+  - Validate external data at the boundary with a schema (zod)

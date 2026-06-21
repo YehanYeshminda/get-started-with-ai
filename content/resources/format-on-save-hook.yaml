@@ -1,0 +1,22 @@
+slug: format-on-save-hook
+name: Format on Save Hook
+type: hook
+description: >
+  Runs Prettier (or your formatter) automatically after the agent edits a file,
+  so every change lands already formatted. Drop into your Cursor hooks.json.
+agents: [cursor]
+useCases: [cursor, general, devops]
+tags: [hooks, formatting, prettier, automation]
+related: [sample-hooks-config, prettier-eslint-setting]
+featured: false
+snippet: |
+  {
+    "version": 1,
+    "hooks": {
+      "afterFileEdit": [
+        {
+          "command": "npx prettier --write \"$CURSOR_FILE_PATH\""
+        }
+      ]
+    }
+  }

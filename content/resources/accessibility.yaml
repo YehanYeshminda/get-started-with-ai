@@ -1,0 +1,14 @@
+slug: accessibility
+name: Accessibility Audit
+type: skill
+description: >
+  Audits UI for WCAG issues — semantic markup, keyboard navigation, focus order,
+  color contrast, and ARIA. Suggests concrete fixes, not vague warnings.
+npxCommand: npx skills add https://github.com/obra/superpowers --skill accessibility
+skillsShUrl: https://www.skills.sh/obra/superpowers/accessibility
+githubUrl: https://github.com/obra/superpowers
+agents: [cursor, claude-code, windsurf, cline, codex, copilot]
+useCases: [frontend, ui-ux, design]
+tags: [a11y, accessibility, wcag, frontend]
+related: [frontend-design, web-design-guidelines]
+featured: false

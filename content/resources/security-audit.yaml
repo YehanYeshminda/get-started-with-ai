@@ -1,0 +1,14 @@
+slug: security-audit
+name: Security Audit
+type: skill
+description: >
+  Scans changes for the OWASP top 10 — injection, XSS, auth flaws, secrets in
+  code, and insecure defaults. Explains the impact and the minimal safe fix.
+npxCommand: npx skills add https://github.com/obra/superpowers --skill security-audit
+skillsShUrl: https://www.skills.sh/obra/superpowers/security-audit
+githubUrl: https://github.com/obra/superpowers
+agents: [cursor, claude-code, windsurf, cline, codex, copilot]
+useCases: [security, backend, fullstack]
+tags: [security, owasp, audit, vulnerabilities]
+related: [code-review, api-design]
+featured: true

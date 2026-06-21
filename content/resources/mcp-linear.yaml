@@ -1,0 +1,20 @@
+slug: mcp-linear
+name: Linear MCP
+type: mcp
+description: >
+  Lets your agent read and update Linear issues — pull a ticket's context before
+  coding, or move it to done when the PR lands. Authenticates over OAuth.
+agents: [cursor, claude-code, windsurf, cline, copilot]
+useCases: [general, devops]
+tags: [mcp, linear, issues, project-management]
+related: [mcp-slack, mcp-notion]
+featured: false
+snippet: |
+  {
+    "mcpServers": {
+      "linear": {
+        "command": "npx",
+        "args": ["-y", "mcp-remote", "https://mcp.linear.app/sse"]
+      }
+    }
+  }

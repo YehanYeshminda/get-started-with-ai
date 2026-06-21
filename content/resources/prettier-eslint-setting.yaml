@@ -1,0 +1,20 @@
+slug: prettier-eslint-setting
+name: Prettier + ESLint Preset
+type: setting
+description: >
+  A sane Prettier config plus the ESLint integration so formatting and linting
+  never fight. Drop into your project root and let the agent follow it.
+agents: [cursor, claude-code, windsurf, cline, codex, copilot]
+useCases: [general, frontend, fullstack, devops]
+tags: [settings, prettier, eslint, formatting]
+related: [format-on-save-hook]
+featured: false
+snippet: |
+  // .prettierrc.json
+  {
+    "semi": true,
+    "singleQuote": false,
+    "trailingComma": "all",
+    "printWidth": 80,
+    "tabWidth": 2
+  }

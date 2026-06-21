@@ -4,38 +4,49 @@ import { KitCard, ResourceCard } from "@/components/ResourceCard";
 import {
   getAgents,
   getCatalog,
+  getCatalogStats,
   getFeaturedKits,
   getFeaturedResources,
 } from "@/lib/content";
+import { getTypeStyle } from "@/lib/utils";
+import type { ResourceType } from "@/lib/types";
+
+const typeBlurbs: { type: ResourceType; blurb: string }[] = [
+  { type: "skill", blurb: "Reusable agent abilities and workflows" },
+  { type: "rule", blurb: "Always-on instructions for consistent output" },
+  { type: "mcp", blurb: "Model Context Protocol servers and tools" },
+  { type: "hook", blurb: "Run scripts on agent lifecycle events" },
+  { type: "setting", blurb: "Drop-in config snippets and presets" },
+];
 
 export default function HomePage() {
   const agents = getAgents();
   const catalog = getCatalog();
+  const stats = getCatalogStats();
   const featuredResources = getFeaturedResources().slice(0, 6);
   const featuredKits = getFeaturedKits();
 
   return (
     <div>
+      {/* Hero */}
       <section className="border-b border-border">
         <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
-          <div className="max-w-xl">
-            <h1 className="text-3xl font-medium tracking-tight sm:text-4xl">
-              Agent setup, in one place
+          <div className="max-w-2xl">
+            <h1 className="text-3xl font-semibold tracking-tight sm:text-4xl">
+              Agent setup, without the guesswork
             </h1>
-            <p className="mt-4 text-sm leading-relaxed text-muted-foreground sm:text-base">
-              Skills, rules, MCP configs, and starter kits you can copy and
-              paste into Cursor, Claude Code, Codex, Windsurf, Cline, or
-              Copilot.
+            <p className="mt-4 max-w-xl text-base leading-relaxed text-muted-foreground">
+              Skills, rules, MCP configs, hooks, and starter kits you can copy
+              into Cursor, Claude Code, Codex, Windsurf, Cline, or Copilot. Pick
+              what you need, grab the command, move on.
             </p>
-            <Link
-              href="/browse"
-              className="mt-6 inline-block text-sm text-foreground underline-offset-4 hover:underline"
-            >
-              Browse the full catalog
-            </Link>
+            <p className="mt-4 font-mono text-sm text-muted-foreground">
+              {stats.resources} resources · {stats.kits} kits · {stats.agents}{" "}
+              agents
+            </p>
           </div>
 
-          <div className="mt-12 max-w-xl">
+          <div className="mt-10 max-w-xl">
             <CatalogBrowser
               items={catalog}
               agents={agents}
@@ -47,28 +58,81 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Browse by type */}
+      <section className="mx-auto max-w-6xl px-4 py-12 sm:px-6">
+        <h2 className="text-sm font-medium">Browse by type</h2>
+        <div className="mt-5 grid divide-y divide-border overflow-hidden rounded-lg border border-border sm:grid-cols-2 sm:divide-y-0">
+          {typeBlurbs.map(({ type, blurb }, i) => {
+            const style = getTypeStyle(type);
+            const count = stats.byType[type] ?? 0;
+            return (
+              <Link
+                key={type}
+                href="/browse"
+                className={`flex items-center gap-3 px-4 py-3.5 transition-colors hover:bg-surface ${
+                  i % 2 === 0 ? "sm:border-r sm:border-border" : ""
+                }`}
+              >
+                <span
+                  className={`h-2 w-2 shrink-0 rounded-full ${style.dot}`}
+                  aria-hidden="true"
+                />
+                <span className="font-medium text-foreground">
+                  {style.label}s
+                </span>
+                <span className="font-mono text-xs text-muted-foreground">
+                  {count}
+                </span>
+                <span className="ml-auto hidden truncate text-sm text-muted-foreground sm:block">
+                  {blurb}
+                </span>
+              </Link>
+            );
+          })}
+        </div>
+      </section>
+
+      {/* Starter kits */}
       {featuredKits.length > 0 ? (
-        <section className="mx-auto max-w-6xl px-4 py-14 sm:px-6">
-          <h2 className="text-sm font-medium">Starter kits</h2>
-          <div className="mt-6 grid gap-4 sm:grid-cols-2">
-            {featuredKits.map((kit) => (
-              <KitCard key={kit.slug} kit={kit} agents={agents} />
-            ))}
+        <section className="border-t border-border">
+          <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6">
+            <div className="flex items-baseline justify-between">
+              <h2 className="text-sm font-medium">Starter kits</h2>
+              <Link
+                href="/browse"
+                className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+              >
+                View all
+              </Link>
+            </div>
+            <div className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {featuredKits.map((kit) => (
+                <KitCard key={kit.slug} kit={kit} agents={agents} />
+              ))}
+            </div>
           </div>
         </section>
       ) : null}
 
+      {/* Popular resources */}
       {featuredResources.length > 0 ? (
         <section className="border-t border-border">
-          <div className="mx-auto max-w-6xl px-4 py-14 sm:px-6">
-            <h2 className="text-sm font-medium">Popular resources</h2>
-            <div className="mt-6 divide-y divide-border rounded-lg border border-border px-4">
+          <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6">
+            <div className="flex items-baseline justify-between">
+              <h2 className="text-sm font-medium">Popular resources</h2>
+              <Link
+                href="/browse"
+                className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+              >
+                View all
+              </Link>
+            </div>
+            <div className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {featuredResources.map((resource) => (
                 <ResourceCard
                   key={resource.slug}
                   resource={resource}
                   agents={agents}
-                  compact
                 />
               ))}
             </div>

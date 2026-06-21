@@ -83,6 +83,14 @@ export const USE_CASES = [
   "ui-ux",
   "fullstack",
   "nextjs",
+  "backend",
+  "api",
+  "database",
+  "testing",
+  "devops",
+  "security",
+  "docs",
+  "python",
 ] as const;
 
 export const RESOURCE_TYPES: ResourceType[] = [

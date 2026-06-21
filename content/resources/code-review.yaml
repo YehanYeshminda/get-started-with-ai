@@ -1,0 +1,14 @@
+slug: code-review
+name: Code Review
+type: skill
+description: >
+  Reviews diffs for correctness, security, and style before you open a PR.
+  Flags risky changes, missing tests, and edge cases the author may have missed.
+npxCommand: npx skills add https://github.com/obra/superpowers --skill code-review
+skillsShUrl: https://www.skills.sh/obra/superpowers/code-review
+githubUrl: https://github.com/obra/superpowers
+agents: [cursor, claude-code, windsurf, cline, codex, copilot]
+useCases: [general, fullstack, backend, security]
+tags: [review, quality, pr, security]
+related: [test-driven-development, security-audit]
+featured: true

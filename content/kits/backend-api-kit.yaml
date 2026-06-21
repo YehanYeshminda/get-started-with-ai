@@ -1,0 +1,35 @@
+slug: backend-api-kit
+name: Backend API Kit
+description: >
+  Everything an agent needs to design and ship a typed backend API — contract-first
+  design, a sound database schema, a Postgres MCP for live schema access, a strict
+  TypeScript rule, and a security pass before you merge.
+useCases: [backend, api, database, fullstack]
+agents: [cursor, claude-code]
+featured: true
+resources:
+  - slug: api-design
+    step: 1
+    note: Start contract-first before writing handlers
+  - slug: database-schema
+    step: 2
+    note: Model tables, indexes, and migrations
+  - slug: mcp-postgres
+    step: 3
+    note: Add your connection string for live schema access
+  - slug: typescript-strict-rule
+    step: 4
+  - slug: security-audit
+    step: 5
+    note: Run before opening the PR
+steps:
+  - title: Add the API design skill
+    resourceSlug: api-design
+  - title: Add the database schema skill
+    resourceSlug: database-schema
+  - title: Configure the Postgres MCP
+    resourceSlug: mcp-postgres
+  - title: Add the TypeScript strict rule
+    resourceSlug: typescript-strict-rule
+  - title: Add the security audit skill
+    resourceSlug: security-audit

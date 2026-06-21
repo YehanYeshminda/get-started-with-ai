@@ -1,13 +1,5 @@
-import { cn, formatLabel } from "@/lib/utils";
+import { cn, formatLabel, getTypeStyle } from "@/lib/utils";
 import type { ResourceType } from "@/lib/types";
-
-const typeLabels: Record<ResourceType, string> = {
-  skill: "Skill",
-  rule: "Rule",
-  mcp: "MCP",
-  hook: "Hook",
-  setting: "Setting",
-};
 
 type AgentBadgeProps = {
   slug: string;
@@ -17,7 +9,12 @@ type AgentBadgeProps = {
 
 export function AgentBadge({ slug, name, className }: AgentBadgeProps) {
   return (
-    <span className={cn("text-xs text-muted-foreground", className)}>
+    <span
+      className={cn(
+        "inline-flex items-center rounded-md border border-border bg-surface px-2 py-0.5 text-xs text-muted-foreground",
+        className,
+      )}
+    >
       {name ?? formatLabel(slug)}
     </span>
   );
@@ -29,17 +26,17 @@ type TypeBadgeProps = {
 };
 
 export function TypeBadge({ type, className }: TypeBadgeProps) {
-  const label =
-    type in typeLabels ? typeLabels[type as ResourceType] : formatLabel(type);
+  const style = getTypeStyle(type);
 
   return (
     <span
       className={cn(
-        "text-xs font-medium text-muted-foreground",
+        "inline-flex items-center gap-1.5 text-xs text-muted-foreground",
         className,
       )}
     >
-      {label}
+      <span className={cn("h-2 w-2 rounded-full", style.dot)} aria-hidden="true" />
+      {style.label}
     </span>
   );
 }
@@ -49,11 +46,7 @@ type KitBadgeProps = {
 };
 
 export function KitBadge({ className }: KitBadgeProps) {
-  return (
-    <span className={cn("text-xs font-medium text-muted-foreground", className)}>
-      Kit
-    </span>
-  );
+  return <TypeBadge type="kit" className={className} />;
 }
 
 export function MetaLine({
@@ -66,6 +59,27 @@ export function MetaLine({
   return (
     <p className={cn("text-xs text-muted-foreground", className)}>
       {items.join(" · ")}
+    </p>
+  );
+}
+
+export function TagList({
+  tags,
+  className,
+  max = 4,
+}: {
+  tags: string[];
+  className?: string;
+  max?: number;
+}) {
+  if (tags.length === 0) return null;
+  const shown = tags.slice(0, max);
+  const extra = tags.length - shown.length;
+
+  return (
+    <p className={cn("font-mono text-xs text-muted-foreground", className)}>
+      {shown.map((tag) => `#${tag}`).join("  ")}
+      {extra > 0 ? `  +${extra}` : ""}
     </p>
   );
 }

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { MetaLine } from "@/components/AgentBadge";
+import { ArrowLeft } from "lucide-react";
+import { KitBadge } from "@/components/AgentBadge";
 import { KitWizard } from "@/components/KitWizard";
 import {
   getAgents,
@@ -34,21 +35,25 @@ export default async function KitPage({ params }: KitPageProps) {
   );
 
   return (
-    <div className="mx-auto max-w-2xl px-4 py-10 sm:px-6">
+    <div className="mx-auto max-w-2xl px-4 py-12 sm:px-6">
       <Link
         href="/browse"
-        className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+        className="inline-flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
       >
-        ← Browse
+        <ArrowLeft className="h-4 w-4" aria-hidden="true" />
+        Browse
       </Link>
 
-      <MetaLine
-        items={["Kit", ...agentNames, `${kit.steps.length} steps`]}
-        className="mt-8"
-      />
+      <div className="mt-8 flex flex-wrap items-center gap-2">
+        <KitBadge />
+        <span className="text-xs text-muted-foreground">
+          {agentNames.join(", ")} · {kit.steps.length} steps ·{" "}
+          {kit.resources.length} resources
+        </span>
+      </div>
 
-      <h1 className="mt-2 text-2xl font-medium">{kit.name}</h1>
-      <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+      <h1 className="mt-3 text-3xl font-semibold tracking-tight">{kit.name}</h1>
+      <p className="mt-4 text-base leading-relaxed text-muted-foreground">
         {kit.description}
       </p>
 

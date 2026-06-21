@@ -1,0 +1,22 @@
+slug: python-style-rule
+name: Python Style Rule
+type: rule
+description: >
+  Enforces clean Python conventions — type hints, ruff formatting, small pure
+  functions, and explicit errors over silent failures.
+agents: [cursor, claude-code, windsurf, cline, codex, copilot]
+useCases: [backend, python, general]
+tags: [rules, python, conventions]
+related: [python-pro, typescript-strict-rule]
+featured: false
+snippet: |
+  ---
+  description: Python style conventions
+  alwaysApply: true
+  ---
+
+  - Add type hints to all function signatures
+  - Format and lint with ruff; keep imports sorted
+  - Prefer small, pure functions and dataclasses
+  - Raise specific exceptions; never swallow errors with bare except
+  - Use pathlib over os.path and f-strings over .format()

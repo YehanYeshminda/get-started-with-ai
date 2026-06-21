@@ -1,0 +1,22 @@
+slug: react-best-practices-rule
+name: React Best Practices Rule
+type: rule
+description: >
+  Guides the agent toward modern React — server components by default, minimal
+  client state, stable keys, and effects only for true side effects.
+agents: [cursor, claude-code, windsurf, cline, codex, copilot]
+useCases: [frontend, fullstack, nextjs]
+tags: [rules, react, frontend, conventions]
+related: [typescript-strict-rule, nextjs]
+featured: false
+snippet: |
+  ---
+  description: React component conventions
+  alwaysApply: true
+  ---
+
+  - Default to server components; add "use client" only when needed
+  - Keep client state minimal and colocated
+  - Use stable, unique keys — never array index for dynamic lists
+  - Reach for useEffect only for real side effects, not derived state
+  - Extract a component before a render branch gets too complex

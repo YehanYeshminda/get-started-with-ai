@@ -1,0 +1,14 @@
+slug: python-pro
+name: Python Pro
+type: skill
+description: >
+  Writes idiomatic, typed Python with modern tooling — uv, ruff, and pytest.
+  Favors small functions, dataclasses, and explicit error handling.
+npxCommand: npx skills add https://github.com/obra/superpowers --skill python
+skillsShUrl: https://www.skills.sh/obra/superpowers/python
+githubUrl: https://github.com/obra/superpowers
+agents: [cursor, claude-code, windsurf, cline, codex, copilot]
+useCases: [backend, python, general]
+tags: [python, backend, typing]
+related: [test-driven-development, api-design]
+featured: false

@@ -1,0 +1,14 @@
+slug: refactoring
+name: Safe Refactoring
+type: skill
+description: >
+  Restructures code in small, behavior-preserving steps with tests as a safety
+  net. Extracts functions, renames, and removes dead code without breaking things.
+npxCommand: npx skills add https://github.com/obra/superpowers --skill refactoring
+skillsShUrl: https://www.skills.sh/obra/superpowers/refactoring
+githubUrl: https://github.com/obra/superpowers
+agents: [cursor, claude-code, windsurf, cline, codex, copilot]
+useCases: [general, backend, fullstack]
+tags: [refactoring, cleanup, quality]
+related: [debugging, code-review]
+featured: false

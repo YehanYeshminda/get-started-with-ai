@@ -1,0 +1,35 @@
+slug: quality-testing-kit
+name: Quality & Testing Kit
+description: >
+  Turn your agent into a disciplined engineer — test-driven development, a
+  systematic debugging loop, safe refactoring, a built-in code reviewer, and a
+  format-on-save hook so every change lands clean.
+useCases: [testing, general, fullstack]
+agents: [cursor, claude-code]
+featured: true
+resources:
+  - slug: test-driven-development
+    step: 1
+    note: Write the failing test first
+  - slug: debugging
+    step: 2
+  - slug: refactoring
+    step: 3
+    note: Restructure only with tests green
+  - slug: code-review
+    step: 4
+    note: Self-review before every PR
+  - slug: format-on-save-hook
+    step: 5
+    note: Cursor only — keeps diffs formatted
+steps:
+  - title: Add the TDD skill
+    resourceSlug: test-driven-development
+  - title: Add the debugging skill
+    resourceSlug: debugging
+  - title: Add the refactoring skill
+    resourceSlug: refactoring
+  - title: Add the code review skill
+    resourceSlug: code-review
+  - title: Add the format-on-save hook
+    resourceSlug: format-on-save-hook

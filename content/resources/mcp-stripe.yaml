@@ -1,0 +1,23 @@
+slug: mcp-stripe
+name: Stripe MCP
+type: mcp
+description: >
+  Lets your agent work with the Stripe API — inspect customers, products, and
+  payments while building billing flows. Use a restricted test-mode key.
+agents: [cursor, claude-code, windsurf, cline, copilot]
+useCases: [backend, api, fullstack]
+tags: [mcp, stripe, payments, billing]
+related: [api-design]
+featured: false
+snippet: |
+  {
+    "mcpServers": {
+      "stripe": {
+        "command": "npx",
+        "args": ["-y", "@stripe/mcp", "--tools=all"],
+        "env": {
+          "STRIPE_SECRET_KEY": "sk_test_YOUR_KEY"
+        }
+      }
+    }
+  }

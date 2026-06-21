@@ -1,0 +1,33 @@
+slug: claude-code-power-user
+name: Claude Code Power User
+description: >
+  A power setup for Claude Code — design-first brainstorming and planning, a
+  persistent memory graph, structured sequential reasoning, and clean
+  conventional commits for a tidy history.
+useCases: [general, fullstack]
+agents: [claude-code]
+featured: true
+resources:
+  - slug: brainstorming
+    step: 1
+    note: Align on intent before building
+  - slug: writing-plans
+    step: 2
+  - slug: mcp-memory
+    step: 3
+    note: Persistent context across sessions
+  - slug: mcp-sequential-thinking
+    step: 4
+  - slug: commit-messages
+    step: 5
+steps:
+  - title: Install the brainstorming skill
+    resourceSlug: brainstorming
+  - title: Install the writing-plans skill
+    resourceSlug: writing-plans
+  - title: Configure the Memory MCP
+    resourceSlug: mcp-memory
+  - title: Configure the Sequential Thinking MCP
+    resourceSlug: mcp-sequential-thinking
+  - title: Add the conventional commits skill
+    resourceSlug: commit-messages

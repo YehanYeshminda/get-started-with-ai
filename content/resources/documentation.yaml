@@ -1,0 +1,14 @@
+slug: documentation
+name: Documentation Writer
+type: skill
+description: >
+  Generates and maintains READMEs, API docs, and inline comments that stay in
+  sync with the code. Focuses on the why and on examples that actually run.
+npxCommand: npx skills add https://github.com/obra/superpowers --skill documentation
+skillsShUrl: https://www.skills.sh/obra/superpowers/documentation
+githubUrl: https://github.com/obra/superpowers
+agents: [cursor, claude-code, windsurf, cline, codex, copilot]
+useCases: [general, docs, fullstack]
+tags: [docs, readme, writing]
+related: [api-design]
+featured: false

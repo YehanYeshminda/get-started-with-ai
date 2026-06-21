@@ -1,0 +1,23 @@
+slug: mcp-notion
+name: Notion MCP
+type: mcp
+description: >
+  Connects your agent to Notion so it can read specs, update docs, and pull
+  context from your workspace. Requires an internal integration token.
+agents: [cursor, claude-code, windsurf, cline, copilot]
+useCases: [general, docs]
+tags: [mcp, notion, docs, knowledge]
+related: [mcp-linear, documentation]
+featured: false
+snippet: |
+  {
+    "mcpServers": {
+      "notion": {
+        "command": "npx",
+        "args": ["-y", "@notionhq/notion-mcp-server"],
+        "env": {
+          "NOTION_TOKEN": "ntn_YOUR_TOKEN"
+        }
+      }
+    }
+  }

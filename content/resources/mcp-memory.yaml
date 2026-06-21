@@ -1,0 +1,20 @@
+slug: mcp-memory
+name: Memory MCP
+type: mcp
+description: >
+  Gives your agent a persistent knowledge graph so it remembers entities and
+  relationships across sessions. Great for long-running projects and context recall.
+agents: [cursor, claude-code, windsurf, cline, copilot]
+useCases: [general]
+tags: [mcp, memory, knowledge-graph, context]
+related: [mcp-sequential-thinking]
+featured: false
+snippet: |
+  {
+    "mcpServers": {
+      "memory": {
+        "command": "npx",
+        "args": ["-y", "@modelcontextprotocol/server-memory"]
+      }
+    }
+  }

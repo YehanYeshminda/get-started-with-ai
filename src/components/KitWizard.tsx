@@ -76,29 +76,37 @@ export function KitWizard({ kit, resources, agents }: KitWizardProps) {
 
   return (
     <div className="space-y-8">
-      <div className="flex flex-wrap items-center justify-between gap-4 border-b border-border pb-6">
-        <p className="text-sm text-muted-foreground">
-          {completedSteps.length} of {visibleSteps.length} steps done ({progress}
-          %)
-        </p>
-        <button
+      <div className="rounded-xl border border-border bg-surface p-4">
+        <div className="flex flex-wrap items-center justify-between gap-4">
+          <p className="text-sm text-muted-foreground">
+            {completedSteps.length} of {visibleSteps.length} steps done (
+            {progress}%)
+          </p>
+          <button
           type="button"
           onClick={copyAllCommands}
           disabled={!allCommands}
           className="inline-flex cursor-pointer items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground disabled:cursor-not-allowed disabled:opacity-40"
         >
-          {copiedAll ? (
-            <>
-              <Check className="h-4 w-4" aria-hidden="true" />
-              Copied all
-            </>
-          ) : (
-            <>
-              <Copy className="h-4 w-4" aria-hidden="true" />
-              Copy all commands
-            </>
-          )}
-        </button>
+            {copiedAll ? (
+              <>
+                <Check className="h-4 w-4" aria-hidden="true" />
+                Copied all
+              </>
+            ) : (
+              <>
+                <Copy className="h-4 w-4" aria-hidden="true" />
+                Copy all commands
+              </>
+            )}
+          </button>
+        </div>
+        <div className="mt-3 h-1.5 w-full overflow-hidden rounded-full bg-secondary">
+          <div
+            className="h-full rounded-full bg-[var(--color-kit)] transition-all duration-300"
+            style={{ width: `${progress}%` }}
+          />
+        </div>
       </div>
 
       {kit.agents.length > 1 ? (

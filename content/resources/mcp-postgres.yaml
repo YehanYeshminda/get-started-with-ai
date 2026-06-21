@@ -1,0 +1,23 @@
+slug: mcp-postgres
+name: Postgres MCP
+type: mcp
+description: >
+  Gives your agent read-only access to a PostgreSQL database so it can inspect
+  schemas and run queries while writing data-layer code. Point it at a connection string.
+agents: [cursor, claude-code, windsurf, cline, copilot]
+useCases: [backend, database, fullstack]
+tags: [mcp, postgres, database, sql]
+related: [database-schema, mcp-supabase]
+featured: true
+snippet: |
+  {
+    "mcpServers": {
+      "postgres": {
+        "command": "npx",
+        "args": ["-y", "@modelcontextprotocol/server-postgres"],
+        "env": {
+          "POSTGRES_CONNECTION_STRING": "postgresql://user:pass@localhost:5432/db"
+        }
+      }
+    }
+  }

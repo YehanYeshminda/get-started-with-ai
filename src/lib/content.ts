@@ -151,6 +151,30 @@ export function getAllResourceSlugs(): string[] {
   return getResources().map((resource) => resource.slug);
 }
 
+export function getResourceCountsByType(): Record<string, number> {
+  const counts: Record<string, number> = {};
+  for (const resource of getResources()) {
+    counts[resource.type] = (counts[resource.type] ?? 0) + 1;
+  }
+  return counts;
+}
+
+export type CatalogStats = {
+  resources: number;
+  kits: number;
+  agents: number;
+  byType: Record<string, number>;
+};
+
+export function getCatalogStats(): CatalogStats {
+  return {
+    resources: getResources().length,
+    kits: getKits().length,
+    agents: getAgents().length,
+    byType: getResourceCountsByType(),
+  };
+}
+
 export function getAllKitSlugs(): string[] {
   return getKits().map((kit) => kit.slug);
 }
