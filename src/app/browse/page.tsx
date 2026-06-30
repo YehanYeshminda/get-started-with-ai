@@ -1,5 +1,20 @@
+import type { Metadata } from "next";
 import { CatalogBrowser } from "@/components/CatalogBrowser";
 import { getAgents, getCatalog, getCatalogStats } from "@/lib/content";
+
+export const metadata: Metadata = {
+  title: "Browse the catalog",
+  description:
+    "Search and filter every skill, rule, MCP config, hook, and starter kit for Cursor, Claude Code, Codex, Windsurf, Cline, and Copilot. Copy the install command and go.",
+  alternates: { canonical: "/browse" },
+  openGraph: {
+    title: "Browse the catalog — Agent Config Hub",
+    description:
+      "Search and filter every skill, rule, MCP config, hook, and starter kit for your AI coding agent.",
+    url: "/browse",
+    type: "website",
+  },
+};
 
 export default function BrowsePage() {
   const agents = getAgents();

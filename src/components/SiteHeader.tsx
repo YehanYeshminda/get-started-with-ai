@@ -41,11 +41,11 @@ export function SiteHeader() {
             ))}
           </nav>
           <a
-            href="https://github.com"
+            href="https://github.com/YehanYeshminda/get-started-with-ai"
             target="_blank"
             rel="noopener noreferrer"
             className="text-muted-foreground transition-colors hover:text-foreground"
-            aria-label="GitHub"
+            aria-label="GitHub repository"
           >
             <Github className="h-[18px] w-[18px]" aria-hidden="true" />
           </a>

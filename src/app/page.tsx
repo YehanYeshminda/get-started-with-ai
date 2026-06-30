@@ -9,6 +9,7 @@ import {
   getFeaturedResources,
 } from "@/lib/content";
 import { getTypeStyle } from "@/lib/utils";
+import { SITE_DESCRIPTION, SITE_NAME, absoluteUrl } from "@/lib/seo";
 import type { ResourceType } from "@/lib/types";
 
 const typeBlurbs: { type: ResourceType; blurb: string }[] = [
@@ -26,8 +27,38 @@ export default function HomePage() {
   const featuredResources = getFeaturedResources().slice(0, 6);
   const featuredKits = getFeaturedKits();
 
+  const collectionJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name: SITE_NAME,
+    description: SITE_DESCRIPTION,
+    url: absoluteUrl("/"),
+    mainEntity: {
+      "@type": "ItemList",
+      numberOfItems: stats.resources + stats.kits,
+      itemListElement: [
+        ...featuredKits.map((kit, index) => ({
+          "@type": "ListItem",
+          position: index + 1,
+          name: kit.name,
+          url: absoluteUrl(`/kit/${kit.slug}`),
+        })),
+        ...featuredResources.map((resource, index) => ({
+          "@type": "ListItem",
+          position: featuredKits.length + index + 1,
+          name: resource.name,
+          url: absoluteUrl(`/resource/${resource.slug}`),
+        })),
+      ],
+    },
+  };
+
   return (
     <div>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionJsonLd) }}
+      />
       {/* Hero */}
       <section className="border-b border-border">
         <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6">

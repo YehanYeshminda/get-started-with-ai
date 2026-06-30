@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, ExternalLink, Github } from "lucide-react";
@@ -12,6 +13,7 @@ import {
 } from "@/lib/content";
 import { getCopyTextForResource } from "@/lib/search";
 import { formatLabel } from "@/lib/utils";
+import { SITE_NAME, absoluteUrl, metaDescription } from "@/lib/seo";
 import type { Agent, ResourceType } from "@/lib/types";
 
 type ResourcePageProps = {
@@ -20,6 +22,47 @@ type ResourcePageProps = {
 
 export function generateStaticParams() {
   return getAllResourceSlugs().map((slug) => ({ slug }));
+}
+
+const typeLabels: Record<ResourceType, string> = {
+  skill: "Skill",
+  rule: "Rule",
+  mcp: "MCP server",
+  hook: "Hook",
+  setting: "Setting",
+};
+
+export async function generateMetadata({
+  params,
+}: ResourcePageProps): Promise<Metadata> {
+  const { slug } = await params;
+  const resource = getResourceBySlug(slug);
+
+  if (!resource) {
+    return { title: "Not found", robots: { index: false, follow: false } };
+  }
+
+  const description = metaDescription(resource.description);
+  const url = `/resource/${resource.slug}`;
+  const title = `${resource.name} — ${typeLabels[resource.type]}`;
+
+  return {
+    title,
+    description,
+    keywords: [resource.name, ...resource.tags, ...resource.useCases],
+    alternates: { canonical: url },
+    openGraph: {
+      title: `${resource.name} — ${SITE_NAME}`,
+      description,
+      url,
+      type: "article",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${resource.name} — ${SITE_NAME}`,
+      description,
+    },
+  };
 }
 
 const configPathKey: Record<ResourceType, keyof Agent["configPaths"]> = {
@@ -49,8 +92,52 @@ export default async function ResourcePage({ params }: ResourcePageProps) {
     .map((agentSlug) => agentMap.get(agentSlug))
     .filter((agent): agent is Agent => Boolean(agent));
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "TechArticle",
+        headline: `${resource.name} — ${typeLabels[resource.type]}`,
+        description: metaDescription(resource.description),
+        url: absoluteUrl(`/resource/${resource.slug}`),
+        keywords: [...resource.tags, ...resource.useCases].join(", "),
+        articleSection: typeLabels[resource.type],
+        author: { "@type": "Organization", name: SITE_NAME },
+        publisher: { "@type": "Organization", name: SITE_NAME },
+        isAccessibleForFree: true,
+      },
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          {
+            "@type": "ListItem",
+            position: 1,
+            name: "Home",
+            item: absoluteUrl("/"),
+          },
+          {
+            "@type": "ListItem",
+            position: 2,
+            name: "Browse",
+            item: absoluteUrl("/browse"),
+          },
+          {
+            "@type": "ListItem",
+            position: 3,
+            name: resource.name,
+            item: absoluteUrl(`/resource/${resource.slug}`),
+          },
+        ],
+      },
+    ],
+  };
+
   return (
     <div className="mx-auto max-w-3xl px-4 py-12 sm:px-6">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <Link
         href="/browse"
         className="inline-flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
