@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { IBM_Plex_Sans, JetBrains_Mono } from "next/font/google";
 import { SiteHeader } from "@/components/SiteHeader";
+import { SiteFooter } from "@/components/SiteFooter";
 import {
   SITE_DESCRIPTION,
   SITE_KEYWORDS,
@@ -114,6 +115,7 @@ export default function RootLayout({
         />
         <SiteHeader />
         <main>{children}</main>
+        <SiteFooter />
       </body>
     </html>
   );
