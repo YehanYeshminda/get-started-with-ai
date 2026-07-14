@@ -1,0 +1,15 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "learnai",
+  "compatibility_date": "2025-01-01",
+  "assets": {
+    "directory": "./out",
+    "not_found_handling": "404-page"
+  },
+  "routes": [
+    {
+      "pattern": "learnai.yydev.net",
+      "custom_domain": true
+    }
+  ]
+}

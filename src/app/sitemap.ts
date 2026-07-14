@@ -38,3 +38,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   return [...staticRoutes, ...kitRoutes, ...resourceRoutes];
 }
+
+export const dynamic = "force-static";

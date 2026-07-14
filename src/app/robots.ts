@@ -11,3 +11,5 @@ export default function robots(): MetadataRoute.Robots {
     host: absoluteUrl("/"),
   };
 }
+
+export const dynamic = "force-static";
