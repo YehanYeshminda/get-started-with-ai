@@ -25,4 +25,5 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: 56363a321568bd941b357c0f701a76ce
+          wranglerVersion: "4.110.0"
           command: deploy
