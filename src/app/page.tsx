@@ -1,10 +1,12 @@
 import Link from "next/link";
 import { CatalogBrowser } from "@/components/CatalogBrowser";
+import { BlogCard } from "@/components/BlogCard";
 import { KitCard, ResourceCard } from "@/components/ResourceCard";
 import {
   getAgents,
   getCatalog,
   getCatalogStats,
+  getFeaturedBlogPosts,
   getFeaturedKits,
   getFeaturedResources,
 } from "@/lib/content";
@@ -26,6 +28,7 @@ export default function HomePage() {
   const stats = getCatalogStats();
   const featuredResources = getFeaturedResources().slice(0, 6);
   const featuredKits = getFeaturedKits();
+  const featuredPosts = getFeaturedBlogPosts().slice(0, 3);
 
   const collectionJsonLd = {
     "@context": "https://schema.org",
@@ -92,7 +95,7 @@ export default function HomePage() {
       {/* Browse by type */}
       <section className="mx-auto max-w-6xl px-4 py-12 sm:px-6">
         <h2 className="text-sm font-medium">Browse by type</h2>
-        <div className="mt-5 grid divide-y divide-border overflow-hidden rounded-lg border border-border sm:grid-cols-2 sm:divide-y-0">
+        <div className="mt-5 grid grid-cols-1 divide-y divide-border overflow-hidden rounded-lg border border-border sm:grid-cols-2 sm:divide-y-0">
           {typeBlurbs.map(({ type, blurb }, i) => {
             const style = getTypeStyle(type);
             const count = stats.byType[type] ?? 0;
@@ -136,7 +139,7 @@ export default function HomePage() {
                 View all
               </Link>
             </div>
-            <div className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {featuredKits.map((kit) => (
                 <KitCard key={kit.slug} kit={kit} agents={agents} />
               ))}
@@ -158,13 +161,46 @@ export default function HomePage() {
                 View all
               </Link>
             </div>
-            <div className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {featuredResources.map((resource) => (
                 <ResourceCard
                   key={resource.slug}
                   resource={resource}
                   agents={agents}
                 />
+              ))}
+            </div>
+          </div>
+        </section>
+      ) : null}
+
+      {/* Learn AI */}
+      {featuredPosts.length > 0 ? (
+        <section className="border-t border-border bg-surface/40">
+          <div className="mx-auto max-w-6xl px-4 py-14 sm:px-6">
+            <div className="flex flex-wrap items-end justify-between gap-4">
+              <div className="max-w-xl">
+                <p className="font-mono text-xs text-muted-foreground">
+                  <span className="text-muted-foreground">~/</span>learn-ai
+                </p>
+                <h2 className="mt-2 text-xl font-semibold tracking-tight">
+                  Learn how AI works
+                </h2>
+                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                  Plain-English guides on language models, tokens, and agents —
+                  so the tools in the catalog actually make sense.
+                </p>
+              </div>
+              <Link
+                href="/blog"
+                className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+              >
+                All posts
+              </Link>
+            </div>
+            <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {featuredPosts.map((post) => (
+                <BlogCard key={post.slug} post={post} />
               ))}
             </div>
           </div>

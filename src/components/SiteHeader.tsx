@@ -6,8 +6,15 @@ import { Github } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const navItems = [
-  { href: "/browse", label: "Browse", match: (path: string) => path === "/browse" || path.startsWith("/resource") },
-  { href: "/browse", label: "Kits", match: (path: string) => path.startsWith("/kit") },
+  {
+    href: "/browse",
+    label: "Browse",
+    match: (path: string) =>
+      path === "/browse" ||
+      path.startsWith("/resource") ||
+      path.startsWith("/kit"),
+  },
+  { href: "/blog", label: "Learn", match: (path: string) => path.startsWith("/blog") },
 ];
 
 export function SiteHeader() {

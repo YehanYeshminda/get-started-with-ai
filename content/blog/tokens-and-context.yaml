@@ -1,0 +1,55 @@
+slug: tokens-and-context
+title: Tokens, Context Windows, and Why Prompts Matter
+excerpt: >-
+  Every model has a finite short-term memory measured in tokens. Understanding
+  it explains why prompts get "forgotten," why long chats drift, and how to keep
+  answers sharp.
+date: "2026-07-13"
+author: yydev
+category: Fundamentals
+featured: true
+tags:
+  - tokens
+  - context
+  - prompting
+related:
+  - brainstorming
+  - mcp-memory
+body:
+  - type: paragraph
+    text: >-
+      A token is the unit an LLM reads and writes. It's usually a word fragment
+      — "learning" might be one token, "tokenization" a few. As a rough guide,
+      100 tokens is about 75 English words.
+  - type: heading
+    text: The context window
+  - type: paragraph
+    text: >-
+      The context window is the maximum number of tokens the model can consider
+      at once — your prompt, the conversation so far, and its own reply all
+      count against it. It is the model's entire short-term memory. Nothing
+      outside the window exists to the model.
+  - type: list
+    items:
+      - Too much filler pushes important instructions out of the window.
+      - In long chats, early messages get truncated or summarized away.
+      - Retrieval and tools let you pull in only the relevant context on demand.
+  - type: heading
+    text: Practical prompting
+  - type: paragraph
+    text: >-
+      Because attention is spread across everything in the window, signal-to-
+      noise matters. Put the most important instructions where the model will
+      weigh them, be specific about the output you want, and give concrete
+      examples rather than long abstract descriptions.
+  - type: code
+    language: text
+    code: |
+      Weak:   "Summarize this."
+      Strong: "Summarize this in 3 bullet points for a non-technical
+               reader. Each bullet under 15 words."
+  - type: callout
+    text: >-
+      A bigger context window is not a substitute for a focused prompt. More
+      room helps, but a tight, well-ordered prompt almost always beats a large
+      messy one.

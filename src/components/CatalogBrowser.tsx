@@ -117,7 +117,7 @@ export function CatalogBrowser({
           {kits.length > 0 ? (
             <section>
               <SectionHeader title="Starter kits" count={kits.length} />
-              <div className="grid gap-4 sm:grid-cols-2">
+              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                 {kits.map((kit) => (
                   <KitCard key={kit.slug} kit={kit} agents={agents} />
                 ))}
@@ -128,7 +128,7 @@ export function CatalogBrowser({
           {resources.length > 0 ? (
             <section>
               <SectionHeader title="Resources" count={resources.length} />
-              <div className="grid gap-4 sm:grid-cols-2">
+              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                 {resources.map((resource) => (
                   <ResourceCard
                     key={resource.slug}

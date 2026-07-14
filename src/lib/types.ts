@@ -59,10 +59,38 @@ export const kitSchema = z.object({
   steps: z.array(kitStepSchema),
 });
 
+export const blogBlockSchema = z.discriminatedUnion("type", [
+  z.object({ type: z.literal("heading"), text: z.string() }),
+  z.object({ type: z.literal("paragraph"), text: z.string() }),
+  z.object({ type: z.literal("list"), items: z.array(z.string()) }),
+  z.object({ type: z.literal("callout"), text: z.string() }),
+  z.object({
+    type: z.literal("code"),
+    language: z.string().optional(),
+    code: z.string(),
+  }),
+]);
+
+export const blogPostSchema = z.object({
+  slug: z.string(),
+  title: z.string(),
+  excerpt: z.string(),
+  date: z.string(),
+  author: z.string().default("yydev"),
+  category: z.string().default("Fundamentals"),
+  tags: z.array(z.string()).default([]),
+  featured: z.boolean().default(false),
+  // Optional resource slugs to surface "next step" links back into the catalog.
+  related: z.array(z.string()).default([]),
+  body: z.array(blogBlockSchema),
+});
+
 export type Agent = z.infer<typeof agentSchema>;
 export type Resource = z.infer<typeof resourceSchema>;
 export type ResourceType = z.infer<typeof resourceTypeSchema>;
 export type Kit = z.infer<typeof kitSchema>;
+export type BlogBlock = z.infer<typeof blogBlockSchema>;
+export type BlogPost = z.infer<typeof blogPostSchema>;
 
 export type CatalogItem =
   | ({ kind: "resource" } & Resource)

@@ -245,7 +245,7 @@ export default async function ResourcePage({ params }: ResourcePageProps) {
       {relatedResources.length > 0 ? (
         <section className="mt-14 border-t border-border pt-10">
           <h2 className="text-sm font-medium">Related resources</h2>
-          <div className="mt-4 grid gap-4 sm:grid-cols-2">
+          <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2">
             {relatedResources.map((related) => (
               <ResourceCard
                 key={related.slug}

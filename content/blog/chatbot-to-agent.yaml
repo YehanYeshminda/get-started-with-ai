@@ -1,0 +1,55 @@
+slug: chatbot-to-agent
+title: "From Chatbot to Agent: How AI Coding Tools Take Action"
+excerpt: >-
+  A chatbot answers. An agent does. Here's the loop that turns a language model
+  into a tool that can read files, run commands, and edit your codebase — and
+  how to set one up.
+date: "2026-07-15"
+author: yydev
+category: Agents
+featured: true
+tags:
+  - agents
+  - tools
+  - mcp
+  - get-started
+related:
+  - mcp-github
+  - mcp-filesystem
+  - code-review
+  - test-driven-development
+body:
+  - type: paragraph
+    text: >-
+      A plain chatbot can only produce text. An agent wraps that same model in a
+      loop and gives it tools — so instead of describing a fix, it can open the
+      file, make the change, run the tests, and read the results.
+  - type: heading
+    text: The agent loop
+  - type: list
+    items:
+      - Observe — the model reads the task and the current state.
+      - Decide — it chooses a tool to call, or answers directly.
+      - Act — the tool runs (read a file, run a command, call an API).
+      - Repeat — the result feeds back in, and the loop continues until done.
+  - type: heading
+    text: Where tools come from
+  - type: paragraph
+    text: >-
+      Tools are exposed to the model through a standard interface. The Model
+      Context Protocol (MCP) has become a common way to plug capabilities —
+      GitHub, a filesystem, a database — into any agent that speaks it. Add an
+      MCP server and every compatible agent can suddenly use it.
+  - type: callout
+    text: >-
+      This is exactly what Agent Config Hub is for — curated skills, rules, and
+      MCP configs you can drop into Cursor, Claude Code, and others so your
+      agent has the right tools from day one.
+  - type: heading
+    text: A sane starting setup
+  - type: paragraph
+    text: >-
+      You don't need every tool at once. A filesystem server for local files, a
+      GitHub server for repo context, and a couple of good rules for code review
+      and testing will take you a long way. Browse the catalog and copy what you
+      need.

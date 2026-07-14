@@ -3,9 +3,11 @@ import path from "path";
 import yaml from "js-yaml";
 import {
   agentSchema,
+  blogPostSchema,
   kitSchema,
   resourceSchema,
   type Agent,
+  type BlogPost,
   type CatalogItem,
   type Kit,
   type Resource,
@@ -177,4 +179,25 @@ export function getCatalogStats(): CatalogStats {
 
 export function getAllKitSlugs(): string[] {
   return getKits().map((kit) => kit.slug);
+}
+
+// Blog: newest first by ISO date.
+export function getBlogPosts(): BlogPost[] {
+  return readYamlDir("blog", blogPostSchema).sort((a, b) =>
+    b.date.localeCompare(a.date),
+  );
+}
+
+export function getBlogPostBySlug(slug: string): BlogPost | undefined {
+  return getBlogPosts().find((post) => post.slug === slug);
+}
+
+export function getFeaturedBlogPosts(): BlogPost[] {
+  const posts = getBlogPosts();
+  const featured = posts.filter((post) => post.featured);
+  return featured.length > 0 ? featured : posts;
+}
+
+export function getAllBlogSlugs(): string[] {
+  return getBlogPosts().map((post) => post.slug);
 }

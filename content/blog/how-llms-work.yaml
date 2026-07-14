@@ -1,0 +1,61 @@
+slug: how-llms-work
+title: How Large Language Models Actually Work
+excerpt: >-
+  A plain-English tour of what happens between your prompt and the model's
+  answer — prediction, training, and why LLMs sometimes get things confidently
+  wrong.
+date: "2026-07-10"
+author: yydev
+category: Fundamentals
+featured: true
+tags:
+  - llm
+  - fundamentals
+  - how-ai-works
+related:
+  - brainstorming
+  - writing-plans
+body:
+  - type: paragraph
+    text: >-
+      A large language model (LLM) is, at its core, a very sophisticated
+      next-word predictor. Given some text, it estimates the most likely
+      continuation — one token at a time. Everything else, from writing code to
+      explaining physics, is an emergent behavior built on top of that single
+      idea.
+  - type: heading
+    text: Prediction, not memory
+  - type: paragraph
+    text: >-
+      The model does not look up answers in a database. During training it saw
+      an enormous amount of text and adjusted billions of internal parameters
+      (weights) to get better at predicting what comes next. Those weights are
+      the model — a compressed, statistical representation of patterns in
+      language.
+  - type: list
+    items:
+      - Input text is split into tokens — roughly word fragments.
+      - Each token becomes a vector of numbers the model can do math on.
+      - Layers of attention let each token "look at" the others for context.
+      - The final layer outputs a probability for every possible next token.
+  - type: heading
+    text: Why it feels like it understands
+  - type: paragraph
+    text: >-
+      To predict the next word well, the model has to encode a lot about the
+      world — grammar, facts, reasoning steps, even coding conventions. That
+      compression is why an LLM can hold a coherent conversation. But it is
+      still predicting, which is why it can be fluent and wrong at the same
+      time.
+  - type: callout
+    text: >-
+      Hallucination isn't a bug bolted on — it's the same prediction machinery
+      producing a plausible-sounding token when it lacks the right information.
+      Good prompts and tools reduce it; they don't turn it off.
+  - type: heading
+    text: Where to go next
+  - type: paragraph
+    text: >-
+      Once you understand prediction, the practical levers make sense: give the
+      model better context, break work into steps, and let it use tools. The
+      linked resources below are a good place to start experimenting.

@@ -19,6 +19,8 @@ jobs:
       - run: npm ci
 
       - run: npm run build
+        env:
+          NEXT_PUBLIC_SITE_URL: https://learnai.yydev.net
 
       - name: Deploy to Cloudflare Workers
         uses: cloudflare/wrangler-action@v3

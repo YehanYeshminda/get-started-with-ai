@@ -78,7 +78,7 @@ export function KitWizard({ kit, resources, agents }: KitWizardProps) {
   return (
     <div className="grid gap-8 lg:grid-cols-[300px_minmax(0,1fr)] lg:gap-12">
       {/* Sidebar */}
-      <aside className="space-y-6 lg:sticky lg:top-20 lg:self-start">
+      <aside className="min-w-0 space-y-6 lg:sticky lg:top-20 lg:self-start">
         <div className="rounded-xl border border-border bg-surface p-5">
           <div className="flex items-baseline justify-between">
             <p className="text-sm font-medium text-foreground">Progress</p>
@@ -178,7 +178,7 @@ export function KitWizard({ kit, resources, agents }: KitWizardProps) {
       </aside>
 
       {/* Steps timeline */}
-      <ol className="relative ml-3 border-l border-border">
+      <ol className="relative ml-3 min-w-0 border-l border-border">
         {visibleSteps.map((step, index) => {
           const resource = resourceMap.get(step.resourceSlug);
           if (!resource) {

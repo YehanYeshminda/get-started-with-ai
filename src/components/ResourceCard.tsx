@@ -123,7 +123,7 @@ export function ResourceCard({
       <TagList tags={resource.tags} className="mt-4" max={3} />
 
       <div className="mt-3 flex items-center justify-between gap-3 border-t border-border pt-3">
-        <p className="truncate text-xs text-muted-foreground">
+        <p className="min-w-0 truncate text-xs text-muted-foreground">
           {agentNames.join(", ")}
           {resource.agents.length > 3 ? ` +${resource.agents.length - 3}` : ""}
         </p>
@@ -205,7 +205,7 @@ export function KitCard({ kit, agents, list = false }: KitCardProps) {
       </p>
 
       <div className="mt-4 flex items-center justify-between gap-3 border-t border-border pt-3">
-        <p className="truncate text-xs text-muted-foreground">
+        <p className="min-w-0 truncate text-xs text-muted-foreground">
           {agentNames.join(", ")} · {kit.steps.length} steps
         </p>
         <span className="text-xs text-muted-foreground transition-colors group-hover:text-foreground">

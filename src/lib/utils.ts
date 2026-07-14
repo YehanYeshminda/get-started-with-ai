@@ -12,6 +12,26 @@ export function formatLabel(value: string): string {
     .join(" ");
 }
 
+/** Format an ISO date (YYYY-MM-DD) as e.g. "Jul 15, 2026". */
+export function formatDate(iso: string): string {
+  const date = new Date(`${iso}T00:00:00Z`);
+  if (Number.isNaN(date.getTime())) {
+    return iso;
+  }
+  return date.toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+    timeZone: "UTC",
+  });
+}
+
+/** Rough reading time in minutes from a list of text fragments (~200 wpm). */
+export function readingMinutes(texts: string[]): number {
+  const words = texts.join(" ").trim().split(/\s+/).filter(Boolean).length;
+  return Math.max(1, Math.round(words / 200));
+}
+
 export type TypeStyle = {
   label: string;
   dot: string;

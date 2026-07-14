@@ -1,5 +1,9 @@
 import type { MetadataRoute } from "next";
-import { getAllKitSlugs, getAllResourceSlugs } from "@/lib/content";
+import {
+  getAllBlogSlugs,
+  getAllKitSlugs,
+  getAllResourceSlugs,
+} from "@/lib/content";
 import { absoluteUrl } from "@/lib/seo";
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -17,6 +21,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: now,
       changeFrequency: "weekly",
       priority: 0.9,
+    },
+    {
+      url: absoluteUrl("/blog"),
+      lastModified: now,
+      changeFrequency: "weekly",
+      priority: 0.8,
     },
   ];
 
@@ -36,7 +46,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   }));
 
-  return [...staticRoutes, ...kitRoutes, ...resourceRoutes];
+  const blogRoutes: MetadataRoute.Sitemap = getAllBlogSlugs().map((slug) => ({
+    url: absoluteUrl(`/blog/${slug}`),
+    lastModified: now,
+    changeFrequency: "monthly",
+    priority: 0.7,
+  }));
+
+  return [...staticRoutes, ...blogRoutes, ...kitRoutes, ...resourceRoutes];
 }
 
 export const dynamic = "force-static";
